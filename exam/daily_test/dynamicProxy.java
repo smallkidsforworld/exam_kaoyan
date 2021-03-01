@@ -4,6 +4,7 @@ import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
@@ -33,6 +34,7 @@ public class dynamicProxy {
         test.stream().map(single -> new Person(((Student)single).getName())).collect(Collectors.toList());
         System.out.println(test.get(0) instanceof Person);
         
+
     }
 }
 class Person{
