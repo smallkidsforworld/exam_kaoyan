@@ -32,7 +32,7 @@
       - 反射创建:java.lang.reflect.Constructor/Class的newInstance方法
       - 对象的clone方法
       - 反序列化手段,ObjectInputStream.readObject();
-    - Object类
+   -  Object类
       - 方法
          - equals(),hasCode():该方法用于哈希查找，重写了equals方法一般都要重写hashCode方法。
          - getClass():返回Class类型的对象，反射来获取对象
@@ -41,8 +41,20 @@
          - wait():wait方法就是使当前线程等待该对象的锁，当前线程必须是该对象的拥有者，也就是具有该对象的锁
          - toString()
          - finalize()
-    - java范型
+   - java范型:
+       - 参数化类型,限定详细的调用类型
+       - 类型通配符.
+          - ? extend 
+          - ? super 
     - java注解和反射
+       - 注解
+          - 元注解:
+             - @Target:注解使用范围
+             - @Retention:注解生命周期
+             - @Document:注解包含在javadoc
+             - @Inherited:子类可以集成父类的注解.
+             
+
     - 序列化和反序列化
        - 序列化
            - 将对象写到磁盘.
@@ -51,11 +63,30 @@
              - 实现Serialize接口
              - 实现Exteranlizable接口,重写其中的writeExternel,readExternel.可以决定需要序列化的对象(可忽略transient关键字作用)
            - 静态变量不会序列化.
+           - java.io.ObjectOutputStream
+       - 反序列化
+           - java.io.ObjectInputStream
     - 深拷贝和浅拷贝:
+       - 深拷贝方法:
+          - 构造函数重新构造
+          - 序列化和反序列化的方式重新构造.
+          - 重载clone方法
+          - Jackson序列化
    ### IO部分
-
+   - 字符流
+      - Reader
+      - Writer
+   - 字节流
+      - InputStream
+      - OutputStream
    ### 异常部分
+
 ## 并发部分
+   - NIO
+      - 核心组成
+         - Selector(选择器)
+         - Channel(通道)
+         - Buffer(缓冲区)
 
 ## 锁机制
 
