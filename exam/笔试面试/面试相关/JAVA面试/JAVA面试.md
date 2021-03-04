@@ -3,7 +3,7 @@
    - final关键字 修饰类:不可继承 修饰属性:不被修改. 修饰方法:不能被重写.(finally中的代码,是一定会执行的)
    - 抽象类和接口区别: 一个是抽象具体类(获得某个类的部分功能),一个是抽象行为(制定行为规范);
    - transient:将不需要序列化的属性前添加关键字transient，序列化对象的时候，这个属性就不会被序列化
-   - volatile变量[详细介绍](https://www.cnblogs.com/wangwudi/p/12303772.html): 是保证修饰变量具有可见性的变量(通过缓存一致性协议)
+   
    - **happens-before**:
 
    - JAVA集合:
@@ -51,10 +51,14 @@
           - 元注解:
              - @Target:注解使用范围
              - @Retention:注解生命周期
+                - (SOURCE < CLASS < RUNTIME)
              - @Document:注解包含在javadoc
              - @Inherited:子类可以集成父类的注解.
-             
-
+          - 作用
+             - 注释
+             - 通过反射获取信息.
+       - 反射
+          - 在运行状态中,对于任意一个类,都能够知道类的属性和方法.
     - 序列化和反序列化
        - 序列化
            - 将对象写到磁盘.
@@ -80,24 +84,35 @@
       - InputStream
       - OutputStream
    ### 异常部分
+   - Error:此类错误发生时，JVM将终止线程
+   - Exception
+      - RuntimeException:系统自动抛出，应用本身可以选择处理或者忽略该异常
+      - IOException:必须进行捕获或者抛出该方法之外交给上层处理
+   - 常见异常
+      - NullPointException:Optional
+      - IndexOutOfBoundsException
+      - NumberFormatException
+      - ClassCastException
+      - FileNotFoundException
+      - ClassNotFoundException
+      - OutOfMemoryError (解决,-Xms增大初始堆)
+      - ConcurrentModificationException(使用迭代器删除的时候产生的问题)
+   ### JAVA8新机制
+   - Optional  
+   - Stream
+   - lambda表达式
 
-## 并发部分
-   - NIO
-      - 核心组成
-         - Selector(选择器)
-         - Channel(通道)
-         - Buffer(缓冲区)
 
-## 锁机制
-
+  
 ## 虚拟机相关
    - 类加载
    - jvm内存模型
+      - 
    - 垃圾回收
 ## Spring相关
    - ioc
    - aop
    - 事务
 ## 设计模式
-   ## 单例模式
+   ## 单例模式  
    ## 工厂模式
