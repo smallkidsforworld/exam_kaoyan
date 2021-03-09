@@ -1,11 +1,10 @@
 ## SE部分
+   - 范围空间
+      -![blockchain](https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/cdbf6c81800a19d865fd770a3efa828ba71e46c7.jpg) 
    - static关键字 修饰代码块,方法,属性
    - final关键字 修饰类:不可继承 修饰属性:不被修改. 修饰方法:不能被重写.(finally中的代码,是一定会执行的)
    - 抽象类和接口区别: 一个是抽象具体类(获得某个类的部分功能),一个是抽象行为(制定行为规范);
    - transient:将不需要序列化的属性前添加关键字transient，序列化对象的时候，这个属性就不会被序列化
-   
-   - **happens-before**:
-
    - JAVA集合:
       - Collection
          - List
@@ -32,7 +31,7 @@
       - 反射创建:java.lang.reflect.Constructor/Class的newInstance方法
       - 对象的clone方法
       - 反序列化手段,ObjectInputStream.readObject();
-   -  Object类
+   - Object类
       - 方法
          - equals(),hasCode():该方法用于哈希查找，重写了equals方法一般都要重写hashCode方法。
          - getClass():返回Class类型的对象，反射来获取对象
@@ -46,7 +45,7 @@
        - 类型通配符.
           - ? extend 
           - ? super 
-    - java注解和反射
+   - java注解和反射
        - 注解
           - 元注解:
              - @Target:注解使用范围
@@ -59,7 +58,8 @@
              - 通过反射获取信息.
        - 反射
           - 在运行状态中,对于任意一个类,都能够知道类的属性和方法.
-    - 序列化和反序列化
+---
+   - 序列化和反序列化
        - 序列化
            - 将对象写到磁盘.
            - 网络上传输对象的字节序列.
@@ -70,13 +70,30 @@
            - java.io.ObjectOutputStream
        - 反序列化
            - java.io.ObjectInputStream
-    - 深拷贝和浅拷贝:
+   - 深拷贝和浅拷贝:
        - 深拷贝方法:
           - 构造函数重新构造
           - 序列化和反序列化的方式重新构造.
           - 重载clone方法
           - Jackson序列化
+---
    ### IO部分
+   - NIO
+      - 块数据读写
+      - Buffer缓冲区:一块可读可写的内存区域.负责数据存取.
+         - 基本属性
+            - 容量:Buffer的容量
+            - 限制:表示缓冲区可以操作数据的大小.(后面的数据不能进行操作)
+            - 位置:下一个要读取或写入的数据的索引.
+            - 标记与重置:标记一个索引,可通过reset方法回复到对应位置.
+      - Channel:非阻塞的读写数据.支持异步.每个Channerl对应一个Buffer.负责数据传输
+         - 类别:
+            - FileChannel
+            - DatagramChannel(UDP)
+            - SocketChannel(TCP)
+            - ServerSocketChannel(每一个新链接创建一个SocketChannel)
+      - Selector:检查一个或多个Channerl.轮讯通道进行处理.
+
    - 字符流
       - Reader
       - Writer
@@ -101,14 +118,13 @@
    - Optional  
    - Stream
    - lambda表达式
-
-
   
 
 ## Spring相关
    - ioc
    - aop
    - 事务
+   Spring（为什么需要IOC，AOP是怎么实现的，Spring如何使用三级缓存解决循环依赖的问题，Spring Bean的生命周期，Spring 事务在哪些场景下会失效，Spring Boot听过吗？它是什么？
 ## 设计模式
    ## 单例模式  
    ## 工厂模式
