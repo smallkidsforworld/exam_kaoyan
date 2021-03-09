@@ -10,7 +10,8 @@
          - List
             - LinkedList(链表)
             - ArrayList(线性表)
-            - Vector(类似与ArrayList,同步)
+            - Vecto
+            r(类似与ArrayList,同步)
             - Stack(继承自Vector)
          - Set
             - HashSet:无重复元素,不保证顺序,0/1个null元素,不同步
