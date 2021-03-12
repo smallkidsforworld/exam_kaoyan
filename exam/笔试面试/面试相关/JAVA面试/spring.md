@@ -1,0 +1,94 @@
+# Spring全家桶
+## 基础介绍
+   - 介绍:Spring是基于Java语言的轻量型，松耦合的集成开发框架。
+   - 配置元数据:
+      - 基于XML配置.
+      - 基于注解配置.
+      - 基于JAVA配置.
+
+   - ioc(控制反转):需要自己通过 new 实例化构造函数，或者通过工厂模式实例化的任务交给容器:实现,依赖注入.
+      - BeanFactory:可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义，以便在接收到客户端请求时将对应的bean实例化.Spring通过反射机制利用<bean>的class属性指定实现类实例化Bean
+         - 支持两个对象模型:单例,多例
+      - WebApplicationContext:一个BeanFactory的扩展接口.application context 如同 bean factory 一样具有 bean 定义、bean 关联关系的设置，根据请求分发 bean 的功能。但 application context 在此基础上还提供了其他的功能:
+         - 1.提供了支持国际化的文本消息
+         - 2.统一的资源文件读取方式
+         - 3.已在监听器中注册的 bean 的事件
+         - AOP
+   - PI(依赖注入):   
+      - 构造器注入
+      - Setter方法注入
+      - 接口注入.
+--- 
+## 常用注解
+   - 声明式注解
+      - Component:无明确的角色,泛指组件
+      - Service: 业务逻辑层
+      - Repository: 数据访问层(DAO)
+      - Controller: 展示层
+   - bean注入注解
+      - Autowired
+      - Inject
+      - Resource
+   - 配置类相关注解
+      - Configuration 声明为配置类
+      - Bean:注解在方法上,表示当前方法返回值为bean.
+      - ComponentScan 用于Component的扫描
+   - 切面注解
+      - Aspect:声明切片类
+      - After 在方法执行之后执行（方法上）
+      - Before 在方法执行之前执行（方法上）
+      - Around 在方法执行之前与之后执行（方法上）
+      - PointCut 声明切点
+   - bean的属性支撑注解
+      - Scope:声明作用域
+      - PostConstruct: 构造函数执行之后,执行这个注解下的方法
+      - PreDestory: bean销毁之前执行. 
+   - Value注解
+      - Value注入普通的值.
+   - 异步相关
+      - EnableAsync:通过此注解开启对异步任务的支持
+      - Async:在实际执行的bean方法使用该注解来申明其是一个异步任务(需要@EnableAsync开启异步任务)
+   - 定时任务相关
+      - EnableScheduling 在配置类上使用，开启计划任务的支持（类上）
+      - Scheduled 来申明这是一个任务，包括cron,fixDelay,fixRate等类型（方法上，需先开启计划任务的支持）
+   - 开启功能支持(@Enable*)
+      - @EnableTransactionManagement 开启注解式事务的支持
+      - @EnableCaching 开启注解式的缓存支持
+      - @EnableWebMvc 开启Web MVC的配置支持
+   - 测试注解
+      - @RunWith 运行器，Spring中通常用于对JUnit的支持 
+      - RunWith(SpringJUnit4ClassRunner.class)
+      - ContextConfiguration 用来加载配置
+      - ApplicationContext，其中classes属性用来加载配置类
+      - ContextConfiguration(classes={TestConfig.class})
+   - SpringMVC相关注解.
+      - Contoller:声明为SpringMVC的Contoller
+      - RestController:该注解为一个组合注解，相当于@Controller和@ResponseBody的组合，注解在类上，意味着，该Controller的所有方法都默认加上了@ResponseBody
+      - RequestMapping 用于映射Web请求，包括访问路径和参数（类或方法上）
+      - RequestBody 允许request的参数在request体中，而不是在直接连接在地址后面。（放在参数前）
+      - ResponseBody 支持将返回值放在response内，而不是一个页面，通常用户返回json数据（返回值旁或方法上）
+      - PathVariable 用于接收路径参数，比如@RequestMapping(“/hello/{name}”)申明的路径，将注解放在参数中前，即可获取该值，通常作为Restful的接口实现方法。
+      - ExceptionHandler 用于全局处理控制器里的异常
+
+---
+## [Spring执行过程](https://javadoop.com/post/spring-ioc)
+   - ApplicationContext加载:ApplicationContext context = new ClassPathXmlApplicationContext(...)   
+   ![blockchain](https://javadoop.com/post/spring-ioc)
+   - AnnotationConfigApplicationContext 是基于注解来使用的
+   - 调用refresh方法(构造IOC容器)->校验XML文件,设置重复依赖以及其它.
+---
+## SpringBeen
+   - 作用域:
+      - Singleton(单例模式):不论接受到多少个请求,都只维护一个bean实例.
+      - prototype: 为每一个请求提供一个实例.
+      - request: 每次HTTP请求都会创建一个新的Bean，该作用域仅适用于web的Spring WebApplicationContext环境.
+      - Session: 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean。该作用域仅适用于web的Spring WebApplicationContext环境
+      - 限定一个Bean的作用域为ServletContext的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境
+   - 生命周期:
+      - 实例化阶段:构造方法调用
+      - 属性赋值:setter方法注入属性
+      - 初始化阶段
+      - 销毁:容器关闭时候,自动销毁.
+  ---
+   - 事务
+   Spring（为什么需要IOC，AOP是怎么实现的，Spring如何使用三级缓存解决循环依赖的问题，Spring Bean的生命周期，Spring 事务在哪些场景下会失效，Spring Boot听过吗？它是什么？

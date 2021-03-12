@@ -1,6 +1,6 @@
 ## SE部分
    - 范围空间
-      -![blockchain](https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/cdbf6c81800a19d865fd770a3efa828ba71e46c7.jpg) 
+      ![blockchain](https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/cdbf6c81800a19d865fd770a3efa828ba71e46c7.jpg) 
    - static关键字 修饰代码块,方法,属性
    - final关键字 修饰类:不可继承 修饰属性:不被修改. 修饰方法:不能被重写.(finally中的代码,是一定会执行的)
    - 抽象类和接口区别: 一个是抽象具体类(获得某个类的部分功能),一个是抽象行为(制定行为规范);
@@ -10,8 +10,7 @@
          - List
             - LinkedList(链表)
             - ArrayList(线性表)
-            - Vecto
-            r(类似与ArrayList,同步)
+            - Vector(类似与ArrayList,同步)
             - Stack(继承自Vector)
          - Set
             - HashSet:无重复元素,不保证顺序,0/1个null元素,不同步
@@ -22,16 +21,27 @@
         - WeakHashMap:它对key实行“弱引用”，如果一个key不再被外部所引用，那么该key可以被GC回收
       - 重点讲解:HashMap:
         - 数据块结构:Node(key,value,next)数组,与链表结合组成的数据结构,数组中存放链表的首位置..
-        - 冲突解决:链地址法,当链表长度大于等于8,且数组长度大于64的时候,变化成为红黑树.
+        - 冲突解决:链地址法,当<font color="red">**链表长度大于等于8,且数组长度大于64的时候,变化成为红黑树.**</font>
         - hash函数:[扰动函数](https://www.cnblogs.com/zhengwang/p/8136164.html)重写对象的equals同时,也要重写hashCode
         - 并发时,put的异常:
         ![blockchain](https://pic2.zhimg.com/80/v2-68f6c6ac43dcdf661a7f28e25a4b5098_1440w.jpg?source=1940ef5c)
-      - ConcurrentHashMap: segment,分段锁
+        - 扩容机制:1.8 
+           - size扩大为原来的两倍.
+           - 遍历旧的Node数组.
+           - 每个位置如果有值e
+              - 如果e.next为空,则重新计算新数组中的位置.
+              - 如果e是一个数.使用树的处理办法.
+              - 否则,使用头插入的方法,将链表上的值,分别计算其与原数组长度的与,判断新插入位置.
+      - ConcurrentHashMap: 
+         - transient volatile HashEntry<K,V> table使用表存储数据,可以实现没一行数据加锁.
+         - 变为table数组＋单向链表＋红黑树的结构
+---
    - JAVA创建对象的四种方式:
       - new方法创建
       - 反射创建:java.lang.reflect.Constructor/Class的newInstance方法
       - 对象的clone方法
       - 反序列化手段,ObjectInputStream.readObject();
+---
    - Object类
       - 方法
          - equals(),hasCode():该方法用于哈希查找，重写了equals方法一般都要重写hashCode方法。
@@ -40,7 +50,11 @@
          - notify(),notifyAll():该方法唤醒在该对象上等待的线程。
          - wait():wait方法就是使当前线程等待该对象的锁，当前线程必须是该对象的拥有者，也就是具有该对象的锁
          - toString()
-         - finalize()
+         - finalize():虚拟机执行回收操作的时候,会调用这个方法.finalize()并不是必须要执行的，它只能执行一次或者0次.
+            - 对象未覆盖 finalize 方法，不执行
+            - finalize已经被调用过一次，不执行
+            - jvm不保证finalize能完整执行
+---
    - java范型:
        - 参数化类型,限定详细的调用类型
        - 类型通配符.
@@ -94,7 +108,6 @@
             - SocketChannel(TCP)
             - ServerSocketChannel(每一个新链接创建一个SocketChannel)
       - Selector:检查一个或多个Channerl.轮讯通道进行处理.
-
    - 字符流
       - Reader
       - Writer
@@ -105,27 +118,28 @@
    - Error:此类错误发生时，JVM将终止线程
    - Exception
       - RuntimeException:系统自动抛出，应用本身可以选择处理或者忽略该异常
-      - IOException:必须进行捕获或者抛出该方法之外交给上层处理
-   - 常见异常
-      - NullPointException:Optional
-      - IndexOutOfBoundsException
-      - NumberFormatException
-      - ClassCastException
-      - FileNotFoundException
-      - ClassNotFoundException
-      - OutOfMemoryError (解决,-Xms增大初始堆)
-      - ConcurrentModificationException(使用迭代器删除的时候产生的问题)
+         - IOException:必须进行捕获或者抛出该方法之外交给上层处理
+      - 常见异常
+         - NullPointException:Optional
+         - IndexOutOfBoundsException
+         - NumberFormatException
+         - ClassCastException
+         - OutOfMemoryError (解决,-Xms增大初始堆)
+         - ConcurrentModificationException(使用迭代器删除的时候产生的问题)
+      - CheckedException:检查形异常 必须进行捕获或者抛出.
+         - IOException
+         - SQLException
+         - FileNotFoundException
+         - ClassNotFoundException
+
+
    ### JAVA8新机制
    - Optional  
    - Stream
    - lambda表达式
-  
 
-## Spring相关
-   - ioc
-   - aop
-   - 事务
-   Spring（为什么需要IOC，AOP是怎么实现的，Spring如何使用三级缓存解决循环依赖的问题，Spring Bean的生命周期，Spring 事务在哪些场景下会失效，Spring Boot听过吗？它是什么？
+
 ## 设计模式
    ## 单例模式  
    ## 工厂模式
+   ## 

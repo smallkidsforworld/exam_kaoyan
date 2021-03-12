@@ -34,7 +34,6 @@ public class dynamicProxy {
         test.stream().map(single -> new Person(((Student)single).getName())).collect(Collectors.toList());
         System.out.println(test.get(0) instanceof Person);
         
-
     }
 }
 class Person{
