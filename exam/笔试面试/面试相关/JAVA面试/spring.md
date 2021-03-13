@@ -5,14 +5,13 @@
       - 基于XML配置.
       - 基于注解配置.
       - 基于JAVA配置.
-
    - ioc(控制反转):需要自己通过 new 实例化构造函数，或者通过工厂模式实例化的任务交给容器:实现,依赖注入.
       - BeanFactory:可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义，以便在接收到客户端请求时将对应的bean实例化.Spring通过反射机制利用<bean>的class属性指定实现类实例化Bean
          - 支持两个对象模型:单例,多例
-      - WebApplicationContext:一个BeanFactory的扩展接口.application context 如同 bean factory 一样具有 bean 定义、bean 关联关系的设置，根据请求分发 bean 的功能。但 application context 在此基础上还提供了其他的功能:
-         - 1.提供了支持国际化的文本消息
-         - 2.统一的资源文件读取方式
-         - 3.已在监听器中注册的 bean 的事件
+      - WebApplicationContext:一个BeanFactory的扩展接口.applicationContext如同beanfactory一样具有bean定义、bean关联关系的设置，根据请求分发 bean的功能。但applicationcontext在此基础上还提供了其他的功能:
+         - 提供了支持国际化的文本消息
+         - 统一的资源文件读取方式
+         - 已在监听器中注册的 bean 的事件
          - AOP
    - PI(依赖注入):   
       - 构造器注入

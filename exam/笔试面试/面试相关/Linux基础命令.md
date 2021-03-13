@@ -9,5 +9,5 @@
 # 查询相关
    - ls -al
    - find / -name filename.txt
-   
+   - lsof命令:列出打开文件,包括socket等套接字.
 
