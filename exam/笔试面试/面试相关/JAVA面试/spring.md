@@ -1,14 +1,14 @@
 # Spring全家桶
 ## 基础介绍
-   - 介绍:Spring是基于Java语言的轻量型，松耦合的集成开发框架。
+   - 介绍:Spring是基于Java语言的轻量型,松耦合的集成开发框架。
    - 配置元数据:
       - 基于XML配置.
       - 基于注解配置.
       - 基于JAVA配置.
-   - ioc(控制反转):需要自己通过 new 实例化构造函数，或者通过工厂模式实例化的任务交给容器:实现,依赖注入.
-      - BeanFactory:可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义，以便在接收到客户端请求时将对应的bean实例化.Spring通过反射机制利用<bean>的class属性指定实现类实例化Bean
+   - ioc(控制反转):需要自己通过 new 实例化构造函数,或者通过工厂模式实例化的任务交给容器:实现,依赖注入.
+      - BeanFactory:可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义,以便在接收到客户端请求时将对应的bean实例化.Spring通过反射机制利用<bean>的class属性指定实现类实例化Bean
          - 支持两个对象模型:单例,多例
-      - WebApplicationContext:一个BeanFactory的扩展接口.applicationContext如同beanfactory一样具有bean定义、bean关联关系的设置，根据请求分发 bean的功能。但applicationcontext在此基础上还提供了其他的功能:
+      - WebApplicationContext:一个BeanFactory的扩展接口.applicationContext如同beanfactory一样具有bean定义、bean关联关系的设置,根据请求分发 bean的功能。但applicationcontext在此基础上还提供了其他的功能:
          - 提供了支持国际化的文本消息
          - 统一的资源文件读取方式
          - 已在监听器中注册的 bean 的事件
@@ -48,25 +48,25 @@
       - EnableAsync:通过此注解开启对异步任务的支持
       - Async:在实际执行的bean方法使用该注解来申明其是一个异步任务(需要@EnableAsync开启异步任务)
    - 定时任务相关
-      - EnableScheduling 在配置类上使用，开启计划任务的支持（类上）
-      - Scheduled 来申明这是一个任务，包括cron,fixDelay,fixRate等类型（方法上，需先开启计划任务的支持）
+      - EnableScheduling 在配置类上使用,开启计划任务的支持（类上）
+      - Scheduled 来申明这是一个任务,包括cron,fixDelay,fixRate等类型（方法上,需先开启计划任务的支持）
    - 开启功能支持(@Enable*)
       - @EnableTransactionManagement 开启注解式事务的支持
       - @EnableCaching 开启注解式的缓存支持
       - @EnableWebMvc 开启Web MVC的配置支持
    - 测试注解
-      - @RunWith 运行器，Spring中通常用于对JUnit的支持 
+      - @RunWith 运行器,Spring中通常用于对JUnit的支持 
       - RunWith(SpringJUnit4ClassRunner.class)
       - ContextConfiguration 用来加载配置
-      - ApplicationContext，其中classes属性用来加载配置类
+      - ApplicationContext,其中classes属性用来加载配置类
       - ContextConfiguration(classes={TestConfig.class})
    - SpringMVC相关注解.
       - Contoller:声明为SpringMVC的Contoller
-      - RestController:该注解为一个组合注解，相当于@Controller和@ResponseBody的组合，注解在类上，意味着，该Controller的所有方法都默认加上了@ResponseBody
-      - RequestMapping 用于映射Web请求，包括访问路径和参数（类或方法上）
-      - RequestBody 允许request的参数在request体中，而不是在直接连接在地址后面。（放在参数前）
-      - ResponseBody 支持将返回值放在response内，而不是一个页面，通常用户返回json数据（返回值旁或方法上）
-      - PathVariable 用于接收路径参数，比如@RequestMapping(“/hello/{name}”)申明的路径，将注解放在参数中前，即可获取该值，通常作为Restful的接口实现方法。
+      - RestController:该注解为一个组合注解,相当于@Controller和@ResponseBody的组合,注解在类上,意味着,该Controller的所有方法都默认加上了@ResponseBody
+      - RequestMapping 用于映射Web请求,包括访问路径和参数（类或方法上）
+      - RequestBody 允许request的参数在request体中,而不是在直接连接在地址后面。（放在参数前）
+      - ResponseBody 支持将返回值放在response内,而不是一个页面,通常用户返回json数据（返回值旁或方法上）
+      - PathVariable 用于接收路径参数,比如@RequestMapping(“/hello/{name}”)申明的路径,将注解放在参数中前,即可获取该值,通常作为Restful的接口实现方法。
       - ExceptionHandler 用于全局处理控制器里的异常
 
 ---
@@ -80,8 +80,8 @@
    - 作用域:
       - Singleton(单例模式):不论接受到多少个请求,都只维护一个bean实例.
       - prototype: 为每一个请求提供一个实例.
-      - request: 每次HTTP请求都会创建一个新的Bean，该作用域仅适用于web的Spring WebApplicationContext环境.
-      - Session: 同一个HTTP Session共享一个Bean，不同Session使用不同的Bean。该作用域仅适用于web的Spring WebApplicationContext环境
+      - request: 每次HTTP请求都会创建一个新的Bean,该作用域仅适用于web的Spring WebApplicationContext环境.
+      - Session: 同一个HTTP Session共享一个Bean,不同Session使用不同的Bean。该作用域仅适用于web的Spring WebApplicationContext环境
       - 限定一个Bean的作用域为ServletContext的生命周期。该作用域仅适用于web的Spring WebApplicationContext环境
    - 生命周期:
       - 实例化阶段:构造方法调用
@@ -91,7 +91,7 @@
   ---
    - 事务
       - 隔离级别 五大,与数据库类似,增加了default
-      - 传播行为:当一个事务方法被另一个事务方法调用时，这个事务方法应该如何进行
+      - 传播行为:当一个事务方法被另一个事务方法调用时,这个事务方法应该如何进行
          - 
       - 是否只读
       - 事务超时
@@ -105,4 +105,30 @@
          - 设置了不支持事务.
          - catch异常不继续向下执行
          - 默认为RuntimeException(如果为其他异常,需要配置@Transactional(rollbackFor = Exception.class))
-   Spring（为什么需要IOC，AOP是怎么实现的，Spring如何使用三级缓存解决循环依赖的问题，Spring Bean的生命周期，Spring 事务在哪些场景下会失效，Spring Boot听过吗？它是什么？
+---
+   - ***自动配置***
+      - @EnableAutoConfiguration开启启动配置功能
+      - 通过@Import导入AutoConfigurationImportSelector选择器发现（注册）自动配置
+      - getAutoConfigurationEntry方法获取并处理所有的自动配置
+      - SpringFactoriesLoader.loadFactoryNames读取spring.factories文件并加载自动配置键值对。
+   - ***[循环依赖](https://www.cnblogs.com/daimzh/p/13256413.html)***
+      - 前置条件:
+         - 出现循环依赖的Bean必须要是单例
+         - 依赖注入的方式不能全是构造器注入的方式（很多博客上说,只能解决setter方法的循环依赖,这是错误的）
+      - 三级缓存
+         - singletonObjects,(对象池)一级缓存,存储的是所有创建好了的单例Bean
+         - earlySingletonObjects(早期曝光对象),完成实例化,但是还未进行属性注入及初始化的对象
+         - singletonFactories(早期曝光对象工厂),提前暴露的一个单例工厂,二级缓存中存储的就是从这个工厂中获取到的对象
+      - Spring是如何解决的循环依赖？
+
+         - Spring通过三级缓存解决了循环依赖,
+         - 其中一级缓存为单例池（singletonObjects）
+         - 二级缓存为早期曝光对象earlySingletonObjects
+         - 三级缓存为早期曝光对象工厂（singletonFactories）- 当A、B两个类发生循环引用时,在A完成实例化后,就使用实例化后的对象去创建一个对象工厂,并添加到三级缓存中,如果A被AOP代理,那么通过这个工厂获取到的就是A代理后的对象,如果A没有被AOP代理,那么这个工厂获取到的就是A实例化的对象。当A进行属性注入时,会去创建B,同时B又依赖了A,所以创建B的同时又会去调用getBean(a)来获取需要的依赖,此时的getBean(a)会从缓存中获取,第一步,先获取到三级缓存中的工厂；第二步,调用对象工工厂的getObject方法来获取到对应的对象,得到这个对象后将其注入到B中。紧接着B会走完它的生命周期流程,包括初始化、后置处理器等。当B创建完后,会将B再注入到A中,此时A再完成它的整个生命周期。至此,循环依赖结束！
+      - 为什么要使用三级缓存呢？二级缓存能解决循环依赖吗？“
+         - 如果要使用二级缓存解决循环依赖,意味着所有Bean在实例化后就要完成AOP代理,这样违背了Spring设计的原则,
+         Spring在设计之初就是通过<font color = "red">AnnotationAwareAspectJAutoProxyCreator</font>这个后置处理器来在Bean生命周期的最后一步来完成AOP代理,而不是在实例化后就立马进行AOP代理。
+      - 对象注入差别
+         - 使用构造函数依赖注入时，Spring保证所有一个对象所有依赖的对象先实例化后，才实例化这个对象。（没有他们就没有我原则）
+         - 使用set方法依赖注入时，Spring首先实例化对象，然后才实例化所有依赖的对象
+
