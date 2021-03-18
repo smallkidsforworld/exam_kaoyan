@@ -68,13 +68,15 @@
       - ResponseBody 支持将返回值放在response内,而不是一个页面,通常用户返回json数据（返回值旁或方法上）
       - PathVariable 用于接收路径参数,比如@RequestMapping(“/hello/{name}”)申明的路径,将注解放在参数中前,即可获取该值,通常作为Restful的接口实现方法。
       - ExceptionHandler 用于全局处理控制器里的异常
-
 ---
 ## [Spring执行过程](https://javadoop.com/post/spring-ioc)
    - ApplicationContext加载:ApplicationContext context = new ClassPathXmlApplicationContext(...)   
-   ![blockchain](https://javadoop.com/post/spring-ioc)
+   ![blockchain](https://www.javadoop.com/blogimages/spring-context/1.png)
    - AnnotationConfigApplicationContext 是基于注解来使用的
    - 调用refresh方法(构造IOC容器)->校验XML文件,设置重复依赖以及其它.
+   - ApplicationContext中可以使用多个beanFectory,并可以设置其父子关系.(HierarchicalBeanFactory)
+   - 继承关系如图:
+   ![blockchain](https://www.javadoop.com/blogimages/spring-context/2.png)
 ---
 ## SpringBeen
    - 作用域:
@@ -87,11 +89,33 @@
       - 实例化阶段:构造方法调用
       - 属性赋值:setter方法注入属性
       - 初始化阶段
+         - 执行Aware相关接口的set方法注入依赖
+         - 执行BeanPostProcessors的前置方法
+         - @PostConstruct注解方法
+         - 执行InitializingBean接口实现类(组件)的初始化方法afterPropertiesSet执行
+         - 自己指定的init-method方法执行
+         - 注册销毁方法
       - 销毁:容器关闭时候,自动销毁.
-  ---
+   - 实例化时间
+      - beanfectory:所有的bean第一次使用的时候实例化
+      - ApplicationContext:
+         - 对于未设置懒加载的单例bean,启动的时候实例化
+         - 对于设置懒加载的单例bean,第一次使用的时候实例化
+         - 对于多例的bean,使用的时候实例化
+   - 区分JVM与Spring bean
+      - JVM中先初始化(如果类存在直接父类，直接父类没有初始化，先初始化直接父类。如果类存在初始化语句，按顺序执行初始化语句)再实例化
+      - SpringBean中先实例化,在调用初始化向其中注入属性
+---
    - 事务
       - 隔离级别 五大,与数据库类似,增加了default
       - 传播行为:当一个事务方法被另一个事务方法调用时,这个事务方法应该如何进行
+         - PROPAGATION_REQUIRED：如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。
+         - PROPAGATION_SUPPORTS：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务的方式继续运行。
+         - PROPAGATION_MANDATORY：如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常（mandatory：强制）不支持当前事务的情况
+         - PROPAGATION_REQUIRES_NEW：创建一个新的事务，如果当前存在事务，则把当前事务挂起。
+         - PROPAGATION_NOT_SUPPORTED：以非事务的方式运行，如果当前存在事务，则把当前事务挂起。
+         - PROPAGATION_NEVER：以非事务的方式运行，如果当前存在事务，则抛出异常。其他情况
+         - PROPAGATION_NESTED：如果当前存在事务，则创建一个事务作为当前事务的嵌套事务来运行；如果当前没有事务，则该取值等价于PROPAGATION_REQUIRED。
          - 
       - 是否只读
       - 事务超时

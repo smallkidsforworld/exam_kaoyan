@@ -1,7 +1,8 @@
-# Redius
+# [Redius](https://juejin.cn/post/6844904017387077640)
    - 基础命令:
 
    - 常用的数据结构
+![blockchain](https://pic1.zhimg.com/v2-0b0e1d3eb01e47b3318318d49fb3de8c_b.jpg)
       1. __string__
       2. __list__:按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
       3. __set__: String 类型的无序集合
