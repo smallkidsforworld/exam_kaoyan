@@ -10,6 +10,9 @@
    - ls -al
    - find / -name filename.txt
    - lsof命令:列出打开文件,包括socket等套接字.
+   - 查询文件中某个字符出现的次数
+   - wc -l
+   - ps
 ---
 # epoll:是linux 内核实现IO多路复用（IO multiplexing）的一个实现
    - 优点

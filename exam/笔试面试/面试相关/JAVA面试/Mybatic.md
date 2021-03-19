@@ -6,3 +6,33 @@
       - 4 但是如果使用在order by 中就需要使用 $.
       - 5 在大多数情况下还是经常使用#，但在不同情况下必须使用$. 
    - ResultMap
+---
+   - 什么是mybatic?
+      - MyBatis是支持定制化SQL、存储过程以及高级映射的优秀的持久层框架。它避免了几乎所有JDBC代码和手动设置参数以及获取结果集。MyBatis可以对配置和原生Map使用简单的XML或注解，将接口和Java的POJO映射成数据库中的记录
+   - Mybatic与Hibernate想比较
+      - mybatis框架相对简单容易上手，针对高级查询，Mybatis需要手动编写SQL语句。Hibernate的真正掌握要比MyBatis难一些，Hibernate有良好的的映射机制，开发者无需关心SQL的生成与结果映射，可以更关注业务流程
+      - mybatis可以进行详细的SQL优化设计，采用合理的session管理机制。Hibernate可以指定合理的缓存策略；尽量采用延迟加载特性；采用合理的session管理机制；采用批量抓取，设定合理的批处理参数
+      - <font color="red">mybatis项目中的所有SQL语句都是依赖所用的数据库的，所以不同数据库类型的支持不好</font>。Hibernate与具体数据库的关联只需在XML文件中配置即可，所有的HQL语句与具体使用的数据库无关，移植性很好
+      - mybatis默认情况下开启了一级缓存；要开启二级缓存，需要在sql映射文件中加上：映射文件中的所有select语句将会缓存，映射文件中的所有insert/update/delete会刷新缓存；缓存会使用LRU(最近最少使用)算法来回收；缓存会存储列表集合会对象的1024个引用；缓存会被视为read/write（可读可写）缓存，意味着对象检索不是共享的，而且可以安全地被调用者修改，而不干扰其他调用者或线程所做的潜在修改
+   - Mybatic半自动ORM?
+      - 另外，有种说法，mybatis是半自动ORM映射工具，Hibernate是全自动的。这主要就是因为使用Hibernate查询关联对象或集合对象时，可以根据对象关系模型调用api接口直接获取。而Mybatis在查询关联对象或集合对象时，需要手动编写sql来完成，所以叫做半自动
+   - JDBC 执行流程?
+      - 加载JDBC驱动
+      - 建立并获取数据库链接.
+      - 创建JDBC Statements对象
+      - 设置SQL语句的传入参数
+      - 执行SQL语句,并返回结果
+      - 处理查询结果,并返回.
+      - 释放相关资源（关闭Connection,关闭Statement,关闭ResultSet）
+   - mybatis执行SQL的流程
+      - 加载配置(生成MapperStatement对象)->SQL解析->SQL执行->结果映射->释放连接
+   - Mybatic初始化:Myabtis初始化的过程就是创建Configuration对象的过程
+      - 加载配置文件mybatis-config.xml到Mybatis内部
+      - 使用Configuration对象作为一个所有配置信息的容器，这个对象的组织结构和XML配置文件的组织结构几乎完全一样，这样配置文件的信息就可以存到这个对象中，访问起来很方便
+   - Mybatic核心组建
+   ![blockchain](https://user-gold-cdn.xitu.io/2020/3/29/17126cf6c8c7957a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+   - Mybatic整合
+      - 引入依赖
+      - 集成mapper;
+      - 使用SQL语句注入
+   - 
