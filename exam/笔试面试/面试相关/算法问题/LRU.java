@@ -46,6 +46,14 @@ class LRUCache<K, V> {
         return node.val;
     }
 
+    public void put(K k, V v) {
+        Node node = new Node();
+        node.val = V;
+        node.key = Key;
+        map.put(k, n);
+        addToHead(node);
+    }
+
     public void moveToHead(Node node) {
         if (node == first) {
             return;
