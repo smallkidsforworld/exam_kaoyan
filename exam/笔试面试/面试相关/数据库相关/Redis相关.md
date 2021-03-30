@@ -6,15 +6,17 @@
       1. __string__
       2. __list__:按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
       3. __set__: String 类型的无序集合
-      4. sorted set:
+      4. __sorted set__:
       5. __hash__:hash 特别适合用于存储对象
    - ***Redius淘汰策略:***
-      1. __noeviction__: 不删除策略, 达到最大内存限制时, 如果需要更多内存, 直接返回错误信息。大多数写命令都会导致占用更多的内存(有极少数会例外。
+      1. __noeviction__: 不删除策略, 达到最大内存限制时, 如果需要更多内存, 直接返回错误信息。大多数写命令都会导致占用更多的内存(有极少数会例外)。
       2. __allkeys-lru__:所有key通用; 优先删除最近最少使用(less recently used ,LRU) 的 key。
       3. __volatile-lru__:只限于设置了 expire 的部分; 优先删除最近最少使用(less recently used ,LRU) 的 key。
       4. __allkeys-random__:所有key通用; 随机删除一部分 key。
       5. __volatile-random__: 只限于设置了 expire 的部分; 随机删除一部分 key。
       6. __volatile-ttl__: 只限于设置了 expire 的部分; 优先删除剩余时间(time to live,TTL) 短的key。
+      7. 设置了expire的最少使用的key
+      8. 所有的key中最少使用的key
    - ***Redis的并发竞争问题如何解决?***   
    __单进程单线程模式__，采用 __队列模式__ 将并发访问变为串行访问。Redis本身没有锁的概念，Redis对于多个客户端连接并不存在竞争，利用setnx实现锁。
    - ***速度快的原因***:  

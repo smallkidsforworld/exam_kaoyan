@@ -119,7 +119,6 @@
    - Exception
       - RuntimeException:系统自动抛出，应用本身可以选择处理或者忽略该异常
          - IOException:必须进行捕获或者抛出该方法之外交给上层处理
-      - 常见异常
          - NullPointException:Optional
          - IndexOutOfBoundsException
          - NumberFormatException
@@ -137,7 +136,6 @@
    - Optional  
    - Stream
    - lambda表达式
-
 
 ## 设计模式
    ## 单例模式  
