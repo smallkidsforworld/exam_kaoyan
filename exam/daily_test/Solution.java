@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class Solution {
 
     public static String changeFormatNumber(String number) {
@@ -43,7 +45,8 @@ public class Solution {
     public static void main(String[] args) {
         System.out.println(String.valueOf((int)Math.pow(2, 15)));
         System.out.println(changeFormatNumber(String.valueOf((int)-Math.pow(2, 15))));
-
+        Stack<Integer> stack = new Stack<>();
+        stack.stream().mapToInt(e->Integer.parseInt(num))
     }
 
     // public static String tenToBinary(Long number) {
